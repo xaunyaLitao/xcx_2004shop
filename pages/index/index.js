@@ -4,10 +4,52 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    goods:[],
+    "bnrUrl": [{
+      "url": "/images/draw-banner.jpg"
+    }, {
+      "url": "/images/discount-banner.jpg"
+    }, {
+      "url": "/images/nursing-banner.jpg"
+    }, {
+      "url": "/images/discount-banner.jpg"
+    }],
+    dataList:[
+      {
+        goods_id:1,
+        goods_title:'商品标题1',
+        goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        goods_xiaoliang:'0',
+        goods_price:'60'
+      },{
+        goods_id:1,
+        goods_title:'商品标题2',
+        goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        goods_xiaoliang:'0',
+        goods_price:'70'
+      }, {
+        goods_id: 1,
+        goods_title: '商品标题3',
+        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        goods_xiaoliang: '0',
+        goods_price: '80'
+      }, {
+        goods_id: 1,
+        goods_title: '商品标题4',
+        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        goods_xiaoliang: '0',
+        goods_price: '90'
+      }, {
+        goods_id: 1,
+        goods_title: '商品标题5',
+        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        goods_xiaoliang: '0',
+        goods_price: '110'
+      }
+    ],
+
+
+
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +58,41 @@ Page({
     })
   },
   onLoad: function () {
+
+    let _this=(this);
+    wx.request({
+      url: 'http://weixinshop.2004.com/api/test', //仅为示例，并非真实的接口地址
+      data: {
+        x: 'xsx',
+        y: 'csc'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        // console.log(res);
+       _this.setData({
+      
+       })
+      }
+    }),
+
+    // 接收商品
+wx.request({
+  url: 'http://weixinshop.2004.com/api/goods',
+  success:function(res) {
+    console.log(res);
+    _this.setData({ 
+      goods:res.data
+    })
+   },
+   fail:function(){
+     console.log("请求失败");
+   }
+})
+
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
