@@ -1,2 +1,43 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class="page-box">
+
+<!-- 商品相册 开始 -->
+<view class="swipper-box">
+  <swiper bindchange="index"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{detail.goods_img}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="tips">
+      <text>{{num+1}}/{{detail.goods_img.length}}</text>
+  </view>
+
+</view>
+
+
+
+<!-- 商品相册 结束 -->
+
+<!-- 商品信息 开始 -->
+<view class="goods-info">
+    <view class="title">{{detail.goods_name}}</view>
+    <view class="price">¥ {{detail.goods_price}}</view>
+</view>
+ <!-- 商品信息 结束 -->
+
+<view class="address"> </view>
+
+<!-- 商品描述信息 开始 -->
+<view class="detail-box"> </view>
+<!-- 商品描述信息 结束 -->
+
+<!-- 底部导航 开始 -->
+<view class="bottom-nav">
+<!-- 底部导航 结束 -->
+
+</view>
+</view>

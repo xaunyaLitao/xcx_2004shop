@@ -4,7 +4,7 @@
 <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
   <block wx:for="{{bnrUrl}}" wx:for-index="index">
     <swiper-item>
-      <image  src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
+      <image url="/pages/detail/detail?id={{item.goods_id}}" src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
     </swiper-item>
   </block>
 </swiper>
@@ -15,28 +15,30 @@
 <!-- 导航栏开始 -->
 <view class='classify_list'>
      <view class="classify">手机</view>
-     <view class="classify">水果</view>
+     <view class="classify">生鲜水果</view>
      <view class="classify">数码</view>
      <view class="classify">服装</view>
      <view class="classify">笔记本</view>
+     <view class="classify">生活用品</view>
+     <view class="classify">肉类</view>
+     <view class="classify">鞋子</view>
+     <view class="classify">内衣</view>
    </view>
 <!-- 导航栏结束 -->
 
 
 <!-- 列表页开始 -->
 <view class='list'>
-  <block wx:for='{{goods}}' wx:key='index' wx:for-item="item">
-  <view class="list_item">
-      <navigator url='details?id={<!-- -->{item.goods_id}}'>
+  <block wx:for='{{goods}}'   wx:key='index' wx:for-item="item">
+  <view class="list_item" bindtap="goodsDetail" id="{{item.goods_id}}">
       <view class='img'>
-        <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
+        <image  src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
       </view>
       <view class='info'>
         <view class='title'>商品名称:{{item.goods_name}}</view>
         <view class='price'>商品价格:￥{{item.goods_price}}</view>
         <view class='num'>商品库存:{{item.goods_number}}</view>
       </view>
-       </navigator>
       <view class='clear'></view>
   </view>
   </block>

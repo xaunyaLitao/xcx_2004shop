@@ -37,12 +37,6 @@
         "selectedIconPath":"/images/order-select.png"
       },
       {
-        "pagePath": "pages/detail/detail",
-        "text": "详情",
-        "iconPath":"/images/detail.png",
-        "selectedIconPath":"/images/detail-select.png"
-      },
-      {
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath":"/images/my.png",

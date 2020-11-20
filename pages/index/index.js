@@ -14,41 +14,9 @@ Page({
     }, {
       "url": "/images/discount-banner.jpg"
     }],
-    dataList:[
-      {
-        goods_id:1,
-        goods_title:'商品标题1',
-        goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        goods_xiaoliang:'0',
-        goods_price:'60'
-      },{
-        goods_id:1,
-        goods_title:'商品标题2',
-        goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        goods_xiaoliang:'0',
-        goods_price:'70'
-      }, {
-        goods_id: 1,
-        goods_title: '商品标题3',
-        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        goods_xiaoliang: '0',
-        goods_price: '80'
-      }, {
-        goods_id: 1,
-        goods_title: '商品标题4',
-        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        goods_xiaoliang: '0',
-        goods_price: '90'
-      }, {
-        goods_id: 1,
-        goods_title: '商品标题5',
-        goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        goods_xiaoliang: '0',
-        goods_price: '110'
-      }
-    ],
-
-
+    list:[],
+    page:1,  //列表 页号
+    pagesize:6, //列表大小
 
   },
   //事件处理函数
@@ -57,9 +25,53 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
 
-    let _this=(this);
+  // 页面上拉触底事件的处理函数
+  onReachBottom: function(){
+    console.log(123211);
+    this.data.page++;
+    this.getGoodsList();
+  },
+
+  //商品详情
+  goodsDetail:function(e)
+  {
+
+    //获取被点击的 商品id
+    let goods_id = e.currentTarget.id;
+    //切换至 详情页
+    wx.redirectTo({
+      url: '/pages/detail/detail?goods_id='+goods_id
+    });
+  },
+
+      // 接收商品
+      getGoodsList:function(){
+        let _this=this;
+        wx.request({
+          url: 'http://weixinshop.2004.com/api/goods',
+          data:{
+              page:_this.data.page,  //分页 页号
+              size:_this.data.pagesize
+          },
+          header:{'content-type':'application/json'},
+          success(res) {
+            console.log(res);
+            let new_list=_this.data.list.concat(res.data.data.list)
+            _this.setData({ 
+              // goods:res.data
+              goods: new_list
+            })
+           },
+           fail:function(){
+             console.log("请求失败");
+           }
+        })
+      },
+
+
+  onLoad: function () {
+    let _this = this;
     wx.request({
       url: 'http://weixinshop.2004.com/api/test', //仅为示例，并非真实的接口地址
       data: {
@@ -72,25 +84,12 @@ Page({
       success (res) {
         // console.log(res);
        _this.setData({
-      
        })
       }
     }),
 
-    // 接收商品
-wx.request({
-  url: 'http://weixinshop.2004.com/api/goods',
-  success:function(res) {
-    console.log(res);
-    _this.setData({ 
-      goods:res.data
-    })
-   },
-   fail:function(){
-     console.log("请求失败");
-   }
-})
 
+    _this.getGoodsList();
 
 
     if (app.globalData.userInfo) {
@@ -120,6 +119,9 @@ wx.request({
       })
     }
   },
+
+
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
