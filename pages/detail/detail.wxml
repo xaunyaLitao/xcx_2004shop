@@ -29,15 +29,30 @@
 </view>
  <!-- 商品信息 结束 -->
 
-<view class="address"> </view>
 
-<!-- 商品描述信息 开始 -->
-<view class="detail-box"> </view>
-<!-- 商品描述信息 结束 -->
+  <!-- sku选择 -->
+  <text bindtap="toggleDialog">请选择购买数量</text>
+  <view class="separate"></view>
+  <text>商品评价</text>
+  <text class="text-remark">东西还可以，好评~</text>
+  <view class="separate"></view>
+  <text>商品详情</text>
+  <block wx:for-items="{{detail.goods_img}}" wx:key="name">
+    <image class="image_detail" src="{{item}}" />
+  </block>
 
-<!-- 底部导航 开始 -->
-<view class="bottom-nav">
-<!-- 底部导航 结束 -->
 
+
+
+<!-- 底部悬浮栏 -->
+<view class="detail-nav">
+  <image bindtap="toCar" src="../../images/cart.png" />
+  <view class="line_nav"></view>
+  <image src="../../images/tel.png" />
+  <view class="line_nav"></view>
+  <image bindtap="addLike" src="{{isLike?'../../images/empty_heart.png':'../../images/shi_heart.png'}}" />
+  <button class="button-green" bindtap="addCar" id="{{detail.goods_id}}" formType="submit">加入购物车</button>
+  <button class="button-red" bindtap="immeBuy" formType="submit">立即购买</button>
 </view>
+
 </view>

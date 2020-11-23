@@ -34,8 +34,7 @@ Page({
   },
 
   //商品详情
-  goodsDetail:function(e)
-  {
+  goodsDetail:function(e){
 
     //获取被点击的 商品id
     let goods_id = e.currentTarget.id;
@@ -60,7 +59,7 @@ Page({
             let new_list=_this.data.list.concat(res.data.data.list)
             _this.setData({ 
               // goods:res.data
-              goods: new_list
+              list: new_list
             })
            },
            fail:function(){
@@ -70,8 +69,33 @@ Page({
       },
 
 
+       //登录
+  doLogin:function(){
+    wx.login({
+      success (res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'http://weixinshop.2004.com/xcx/home-login?code='+res.code,
+            success:function(d){
+              console.log(d);
+              //获取登录token
+              wx.setStorage({
+                key:"token",
+                data:d.data.data.token
+              })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+  },
+
   onLoad: function () {
     let _this = this;
+   
     wx.request({
       url: 'http://weixinshop.2004.com/api/test', //仅为示例，并非真实的接口地址
       data: {
@@ -88,7 +112,7 @@ Page({
       }
     }),
 
-
+    _this.doLogin();
     _this.getGoodsList();
 
 

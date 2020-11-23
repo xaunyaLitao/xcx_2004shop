@@ -15,7 +15,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let goods_id=options.goods_id;
+    let _this=(this);
+    wx.request({
+      url:'http://weixinshop.2004.com/xcx/cart',
+      data:{
+        goods_id:goods_id
+      },
+      success:function(res){
+        console.log(res);
+        _this.setData({
+          cart:res.data       
+        })
+      }
+    })
   },
 
   /**

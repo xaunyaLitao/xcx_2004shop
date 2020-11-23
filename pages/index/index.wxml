@@ -29,14 +29,14 @@
 
 <!-- 列表页开始 -->
 <view class='list'>
-  <block wx:for='{{goods}}'   wx:key='index' wx:for-item="item">
+  <block wx:for='{{list}}'   wx:key='index' wx:for-item="item">
   <view class="list_item" bindtap="goodsDetail" id="{{item.goods_id}}">
       <view class='img'>
         <image  src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
       </view>
       <view class='info'>
-        <view class='title'>商品名称:{{item.goods_name}}</view>
-        <view class='price'>商品价格:￥{{item.goods_price}}</view>
+        <view class='title'>{{item.goods_name}}</view>
+        <view class='price'>￥{{item.goods_price}}</view>
         <view class='num'>商品库存:{{item.goods_number}}</view>
       </view>
       <view class='clear'></view>

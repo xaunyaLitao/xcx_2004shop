@@ -6,37 +6,47 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
-
-
-  //点击登录
-  btnLogin:function(e){
-    wx.login({
-      success (res) {
-        console.log(res);
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: 'http://weixinshop.2004.com/xcx/login',
-            data: {
-              code: res.code
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
-  },
   /**
    * 页面的初始数据
    */
   data: {
 
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
+
+  //  点击登录
+  login:function(u){
+    let userinfo = u.detail.userInfo;
+    let token = wx.getStorageSync('token')
+  wx.login({
+    success (res) {
+      // console.log(res);
+      if (res.code) {
+        //发起网络请求
+        wx.request({
+          url: 'http://weixinshop.2004.com/xcx/user-login?code=' + res.code+'&token='+token,
+          method: 'post',
+          header:{'content-type':'application/json'},
+          data: {
+            u: userinfo
+          },
+          success: function(res){
+            console.log(res);
+              //保存token
+              wx.setStorageSync('toekn',res.data.data.token)
+          }
+        })
+      } else {
+        console.log('登录失败！' + res.errMsg)
+      }
+    }
+  })
+   },
+
+
   onLoad: function (options) {
 
   },

@@ -10,14 +10,15 @@ Page({
     duration: 1000, //  滑动动画时长1s
 
     // 商品详情介绍
-    detailImg: [
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_1.jpg",
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_2.jpg",
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_3.jpg",
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_4.jpg",
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_5.jpg",
-      "http://7xnmrr.com1.z0.glb.clouddn.com/detail_6.jpg",
-    ],
+    // detailImg: [
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_1.jpg",
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_2.jpg",
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_3.jpg",
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_4.jpg",
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_5.jpg",
+    //   "http://7xnmrr.com1.z0.glb.clouddn.com/detail_6.jpg",
+    // ],
+
     kk:"asdfghjkl",
     num:0
   },
@@ -37,10 +38,21 @@ Page({
     });
   },
   // 跳到购物车
-  toCar() {
+  toCar:function(e) {
+     //获取被点击的 商品id
+    let goods_id = e.currentTarget.id;
     wx.switchTab({
-      url: '/pages/cart/cart'
-    })
+      url: '/pages/cart/cart?goods_id='+goods_id
+    });
+  },
+  addCar:function(res) {
+    console.log(res);
+     //获取被点击的 商品id
+    let goods_id = res.currentTarget.id;
+  
+    wx.reLaunch({
+      url: '/pages/cart/cart?goods_id='+goods_id
+    });
   },
   // 立即购买
   immeBuy() {
