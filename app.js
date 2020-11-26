@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    apiUrl:'http://weixin.lixuetao.icu',
+    // apiUrl:'http://weixinshop.2004.com',
   }
 })

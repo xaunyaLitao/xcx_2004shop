@@ -1,4 +1,6 @@
 // pages/my/my.js
+const app = getApp()
+const apihost = app.globalData.apiUrl;
 Page({
   motto: 'Hello World',
     xue:'大哥',
@@ -27,7 +29,7 @@ Page({
       if (res.code) {
         //发起网络请求
         wx.request({
-          url: 'http://weixinshop.2004.com/xcx/user-login?code=' + res.code+'&token='+token,
+          url: app.globalData.apiUrl+ '/xcx/user-login?code=' + res.code+'&token='+token,
           method: 'post',
           header:{'content-type':'application/json'},
           data: {

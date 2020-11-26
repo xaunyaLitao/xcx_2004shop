@@ -1,34 +1,50 @@
 // pages/cart/cart.js
+const app = getApp()
+const apihost = app.globalData.apiUrl;
 Page({
 
-
-
-  
   /**
    * 页面的初始数据
    */
   data: {
-
+    isSelectAll: false,
+    goodsList:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let goods_id=options.goods_id;
-    let _this=(this);
+
+
+
+   /**
+   * 获取购物车商品列表
+   */
+  getCartList: function()
+  {
+    let _this = this;
+    let token = wx.getStorageSync('token')
     wx.request({
-      url:'http://weixinshop.2004.com/xcx/cart',
-      data:{
-        goods_id:goods_id
-      },
-      success:function(res){
-        console.log(res);
-        _this.setData({
-          cart:res.data       
-        })
+      url: apihost + '/xcx/cartlist?token='+token,
+      success: function(d)
+      {
+        console.log(d);
+
+        if(d.data.errno==0)   //请求接口成功
+        {
+          _this.setData({
+            goodsList:d.data.data.list
+          })
+        }else{
+          console.log("接口请求错误")
+        }
+
       }
     })
+  },
+
+  onLoad: function (options) {
+    this.getCartList()
   },
 
   /**

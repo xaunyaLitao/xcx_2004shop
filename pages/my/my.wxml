@@ -1,1 +1,30 @@
 <button open-type="getUserInfo" bindgetuserinfo="login">登录</button>
+<!-- 已登录 开始 -->
+<view class="login-info" wx:if="{{user.nickName}}">
+    <image src="{{user.avatarUrl}}"></image>
+    <view class="login">
+      <view class="top"> {{user.nickName}} </view>
+      <view class="desc"> VIP </view>
+    </view>
+  </view>
+  <!-- 已登录 结束 -->
+
+<view class="user-center">
+    <view class="item">
+      个人资料
+      <text class="iconfont iconarrow"></text>
+    </view>
+    <view class="item">
+      会员中心
+      <text class="iconfont iconarrow"></text>
+    </view>
+    <view class="item" bindtap="switchOrder">
+      我的订单
+      <text class="iconfont iconarrow"></text>
+    </view>
+    <view class="item">
+      退出登录
+      <text class="iconfont iconarrow"></text>
+    </view>
+  </view>
+  <!-- 个人信息 结束 -->

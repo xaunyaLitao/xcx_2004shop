@@ -14,11 +14,11 @@
 
 <!-- 导航栏开始 -->
 <view class='classify_list'>
-     <view class="classify">手机</view>
+     <view class="classify">全部</view>
      <view class="classify">生鲜水果</view>
-     <view class="classify">数码</view>
+     <view class="classify">手机</view>
      <view class="classify">服装</view>
-     <view class="classify">笔记本</view>
+     <view class="classify">电脑</view>
      <view class="classify">生活用品</view>
      <view class="classify">肉类</view>
      <view class="classify">鞋子</view>

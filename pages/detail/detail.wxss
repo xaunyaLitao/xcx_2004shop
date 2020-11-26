@@ -148,3 +148,61 @@ text {
   font-size: 25rpx;
   margin: 10rpx;
 }
+
+.detail-nav .iconfont iconphone
+{
+    font-size:50px;
+}
+
+.detail-nav .nav-icon
+{
+    background-color:#eeeeee;
+    flex: 0.5;
+    text-align: center;
+}
+
+
+page {
+	padding: 20px 0;
+}
+ 
+/*主容器*/
+.stepper {
+	width: 80px;
+	height: 26px;
+	/*给主容器设一个边框*/
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin:0 auto;
+}
+ 
+/*加号和减号*/
+.stepper text {
+	width: 7px;
+	line-height: 22px;
+	text-align: center;
+	float: left;
+}
+ 
+/*数值*/
+.stepper input {
+	width: 40px;
+	height: 26px;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 15px;
+	/*给中间的input设置左右边框即可*/
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+ 
+/*普通样式*/
+.stepper .normal{
+	color: black;
+}
+ 
+/*禁用样式*/
+.stepper .disabled{
+	color: #ccc;
+}

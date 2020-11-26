@@ -1,10 +1,10 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const apihost = app.globalData.apiUrl;
 
 Page({
   data: {
-    goods:[],
     "bnrUrl": [{
       "url": "/images/draw-banner.jpg"
     }, {
@@ -28,7 +28,7 @@ Page({
 
   // 页面上拉触底事件的处理函数
   onReachBottom: function(){
-    console.log(123211);
+    // console.log(123211);
     this.data.page++;
     this.getGoodsList();
   },
@@ -48,14 +48,14 @@ Page({
       getGoodsList:function(){
         let _this=this;
         wx.request({
-          url: 'http://weixinshop.2004.com/api/goods',
+          url: apihost + '/api/goods',
           data:{
               page:_this.data.page,  //分页 页号
               size:_this.data.pagesize
           },
           header:{'content-type':'application/json'},
           success(res) {
-            console.log(res);
+            // console.log(res);
             let new_list=_this.data.list.concat(res.data.data.list)
             _this.setData({ 
               // goods:res.data
@@ -76,7 +76,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://weixinshop.2004.com/xcx/home-login?code='+res.code,
+            url: apihost+ '/xcx/home-login?code='+res.code,
             success:function(d){
               console.log(d);
               //获取登录token
@@ -97,7 +97,7 @@ Page({
     let _this = this;
    
     wx.request({
-      url: 'http://weixinshop.2004.com/api/test', //仅为示例，并非真实的接口地址
+      url: apihost + '/api/test', //仅为示例，并非真实的接口地址
       data: {
         x: 'xsx',
         y: 'csc'

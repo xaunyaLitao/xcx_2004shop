@@ -20,3 +20,55 @@
   margin: 20rpx;
   border-radius: 50%;
 }
+
+page {
+  height: 100%;
+}
+
+.page-box {
+  background-color: #eee;
+  height: 100%;
+  padding-top: 20rpx;
+}
+
+.login-info {
+  display: flex;
+  height: 170rpx;
+  background-color: #fff;
+  padding: 10rpx 20rpx;
+}
+.login-info image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.login-info .login {
+  margin-left: 30rpx;
+}
+.login-info .login .top {
+  font-size: 36rpx;
+  margin-top:30rpx;
+}
+.login-info .login .desc {
+  font-size: 25rpx;
+  color:#e00;
+}
+.btn-login {
+  width: 100%!important;
+  padding: 0;
+}
+
+.user-center {
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.user-center .item {
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #eee;
+  padding: 15rpx 20rpx;
+  font-size: 25rpx;
+}
+.user-center .item text{
+  float: right;
+  margin-right:30rpx;
+}
