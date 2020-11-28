@@ -29,7 +29,7 @@ Page({
       if (res.code) {
         //发起网络请求
         wx.request({
-          url: app.globalData.apiUrl+ '/xcx/user-login?code=' + res.code+'&token='+token,
+          url: apihost + '/xcx/user-login?code=' + res.code+'&token='+token,
           method: 'post',
           header:{'content-type':'application/json'},
           data: {
@@ -38,7 +38,7 @@ Page({
           success: function(res){
             console.log(res);
               //保存token
-              wx.setStorageSync('toekn',res.data.data.token)
+              wx.setStorageSync('toekn',res.data.data.token);
           }
         })
       } else {

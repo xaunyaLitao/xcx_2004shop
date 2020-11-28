@@ -7,15 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSelectAll: false,
     goodsList:[],
+    selectAll:false,
+    totalPrice:0,  //总价
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
+  //  全选
+  selectAll:function(){
+    let list=this.data.goodsList;
+    let all= !this.data.selectAll;
+    let total=0;
+    list.forEach((item)=>{
+      if(all){
+        item.checked=true
+        total+=item.goods_number * item.cart_price
+      }else{
+        item.checked=false
+      }
+    })
+    this.setData({
+      goodsList:list,
+      selectAll:all,
+      totalPrice:total
+    })
+  },
+
+  //  单选
+  selects:function(res){
+    let id=res.target.dataset.id;
+    let _this=this;
+    let total=0;
+  
+    _this.data.goodsList.forEach( (value)=>{
+      if(value.goods_id==id){
+          value.checked=!value.checked;
+      }
+      if(value.checked){
+         total+= value.goods_number* value.cart_price;
+      }
+    })
+      _this.setData({
+        totalPrice: total
+      })
 
 
+  },
 
    /**
    * 获取购物车商品列表
@@ -42,6 +79,11 @@ Page({
       }
     })
   },
+
+  
+    /**
+   * 生命周期函数--监听页面加载
+   */
 
   onLoad: function (options) {
     this.getCartList()

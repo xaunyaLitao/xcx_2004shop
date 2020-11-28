@@ -11,6 +11,11 @@ page {
 
 .cart-top .top-left {
   flex: 1;
+  margin-left: 10rpx;
+}
+
+.cart-top .top-right {
+  margin-right: 10rpx;
 }
 
 .item-list .item {
@@ -88,4 +93,10 @@ page {
   margin-right:20rpx;
   background-color: orange;
   color:#fff;
+}
+.la {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
 }

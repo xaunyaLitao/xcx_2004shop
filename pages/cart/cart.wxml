@@ -1,5 +1,8 @@
 <!--pages/cart/cart.wxml-->
 <view class="page-box">
+  <view class="la">
+    <text>购物车</text>
+  </view>
   <!-- 头部开始  -->
   <view class="cart-top">
     <view class="top-left">共一件商品</view>
@@ -9,9 +12,9 @@
 
   <!-- 列表开始 -->
   <view class="item-list">
-    <view class="item" wx:for="{{goodsList}}" wx:key="*this">
-      <checkbox-group>
-        <checkbox value="1" checked="false"> </checkbox>
+    <view class="item" wx:for="{{goodsList}}" wx:key="index">
+      <checkbox-group data-id="{{goodsList[index].goods_id}}"  bindchange="selects">
+        <checkbox value="1"     checked="{{item.checked}}"> </checkbox>
       </checkbox-group>
       <view class="pic">
         <image src="{{imghref}}{{item.goods_img}}"></image>
@@ -23,7 +26,7 @@
           <view class="price">${{item.cart_price}}</view>
           <view class="number">
             <view class="decr">-</view>
-            <input value="9"></input>
+            <input value="{{item.goods_number}}"></input>
             <view class="incr">+</view>
           </view>
  
@@ -37,13 +40,12 @@
   <view class="total-box">
     <view class="all">
       <checkbox-group bindchange="selectAll">
-        <checkbox value="1" checked="{{isSelectAll}}"  />
-        <text>全选</text>
+        <checkbox>全选</checkbox>
       </checkbox-group>
     </view>
     <view class="total-price">
       总价：
-      <text class="price">$88.88</text>
+      <text class="price">${{totalPrice}}</text>
     </view>
     <view class="btn btn-default">去结算</view>
   </view>
