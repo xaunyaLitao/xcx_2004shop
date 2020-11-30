@@ -44,6 +44,8 @@ Page({
       }
     })
   },
+
+
   // 跳到购物车
   switchToCart: function()
   {
@@ -80,6 +82,12 @@ Page({
        console.log(res)
      }
    })
+
+   wx.showToast({
+    title: '加入购物车成功',
+    icon: 'success',
+    duration: 2000
+  });
  },
 
   // 立即购买

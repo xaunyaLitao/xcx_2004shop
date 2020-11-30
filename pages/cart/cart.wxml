@@ -5,8 +5,8 @@
   </view>
   <!-- 头部开始  -->
   <view class="cart-top">
-    <view class="top-left">共一件商品</view>
-    <view class="top-right">删除</view>
+    <view class="top-left">共{{goodsList.length}}件商品</view>
+    <view class="top-right" bindtap="delgoods">删除</view>
   </view>
   <!-- 头部结束 -->   
 
@@ -27,7 +27,7 @@
           <view class="number">
             <view class="decr">-</view>
             <input value="{{item.goods_number}}"></input>
-            <view class="incr">+</view>
+            <view class="incr" data-goodsindex="{{index}}" bindtap="tao">+</view>
           </view>
  
         </view>
@@ -39,8 +39,8 @@
   <!-- 底部结算 开始 -->
   <view class="total-box">
     <view class="all">
-      <checkbox-group bindchange="selectAll">
-        <checkbox>全选</checkbox>
+      <checkbox-group bindchange="selectAlls">
+        <checkbox checked="{{selectAll}}">全选</checkbox>
       </checkbox-group>
     </view>
     <view class="total-price">

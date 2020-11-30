@@ -14,7 +14,7 @@ Page({
 
 
   //  全选
-  selectAll:function(){
+  selectAlls:function(){
     let list=this.data.goodsList;
     let all= !this.data.selectAll;
     let total=0;
@@ -38,21 +38,108 @@ Page({
     let id=res.target.dataset.id;
     let _this=this;
     let total=0;
-  
+    let la=0;
+    let selectAll=false;
     _this.data.goodsList.forEach( (value)=>{
       if(value.goods_id==id){
           value.checked=!value.checked;
       }
       if(value.checked){
          total+= value.goods_number* value.cart_price;
+          la++
+      }
+      if(la==_this.data.goodsList.length){
+        selectAll=true
       }
     })
       _this.setData({
-        totalPrice: total
+        totalPrice: total,
+        selectAll:selectAll
       })
-
-
   },
+
+
+//购物车商品删除 
+delgoods:function(e){
+  let _this = this;
+  let selectGoods = [];
+  let list = _this.data.goodsList;
+  let token = wx.getStorageSync('token')
+  list.forEach(item=>{
+    if(item.checked){   //选中的商品
+      selectGoods.push(item.goods_id)
+    }
+  })
+
+  if(selectGoods.length>0)
+  {
+    wx.showModal({
+      title: '提示',
+      content: '是否删除选中的商品？',
+      success (res) {
+        if (res.confirm) {
+          console.log('删除商品')
+          wx.request({
+            url: apihost + '/xcx/cart-del?token='+token, //仅为示例，并非真实的接口地址
+            method: 'post',
+            data: {
+              goods: selectGoods.toString(),
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success (res) {
+              console.log("删除成功")
+              _this.getCartList();
+              _this.setData({
+                isSelectAll:false,
+                totalAmount:0
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }else{    //未选中商品
+    wx.showToast({
+      title: '请先选择要删除的商品',
+      icon: 'none',
+      duration: 2000
+    })
+  }
+},
+
+
+//购物车增加商品数量
+  tao:function(e){
+let _this=this;
+let token=wx.getStorageSync('token');
+let list =_this.data.goodsList;  //当前页面的商品列表
+let index=e.currentTarget.dataset.goodsindex
+let goods=list[index];  //获取添加数量的商品
+let goods_id=list[index].goods_id;
+list[index].goods_number++;
+
+// 请求后端购物车接口
+wx.request({
+  url: apihost + '/xcx/cart?token='+token,
+  method:'post',
+  data:{
+    goodsid:goods_id
+  },
+  success:function(d){
+    if(d.data.errno==0){  //请求接口成功
+      _this.setData({
+        goodsList:list
+      })
+    }else{
+      console.log("请求接口错误");
+    }  
+  }
+})
+},
 
    /**
    * 获取购物车商品列表

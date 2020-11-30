@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="99e5e729-3f59-4c65-8b64-6e8b544f2ebf" name="默认" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/my/my.js" afterPath="$PROJECT_DIR$/pages/my/my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/cart/cart.js" afterPath="$PROJECT_DIR$/pages/cart/cart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/cart/cart.wxml" afterPath="$PROJECT_DIR$/pages/cart/cart.wxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/detail/detail.js" afterPath="$PROJECT_DIR$/pages/detail/detail.js" />
     </list>
     <ignored path="xcx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,8 +88,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -140,6 +140,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
