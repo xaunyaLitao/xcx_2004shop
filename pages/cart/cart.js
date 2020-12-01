@@ -59,37 +59,86 @@ Page({
   },
 
 
-//购物车商品删除 
+//购物车商品删除
+// delgoods:function(e){
+//   let _this = this;
+//   let selectGoods = [];
+//   let list = _this.data.goodsList;
+//   let token = wx.getStorageSync('token')
+//   list.forEach(item=>{
+//     if(item.checked){   //选中的商品
+//       selectGoods.push(item.goods_id)
+//     }
+//   })
+
+//   if(selectGoods.length>0)
+//   {
+//     wx.showModal({
+//       title: '提示',
+//       content: '是否删除选中的商品？',
+//       success (res) {
+//         if (res.confirm) {
+//           console.log('删除商品')
+//           wx.request({
+//             url: apihost + '/xcx/cart-del?token='+token, //仅为示例，并非真实的接口地址
+//             method: 'post',
+//             data: {
+//               goods: selectGoods.toString(),
+//             },
+//             header: {
+//               'content-type': 'application/json' // 默认值
+//             },
+//             success (res) {
+//               console.log("删除成功")
+//               _this.getCartList();
+//               _this.setData({
+//                 isSelectAll:false,
+//                 totalAmount:0
+//               })
+//             }
+//           })
+//         } else if (res.cancel) {
+//           console.log('用户点击取消')
+//         }
+//       }
+//     })
+//   }else{    //未选中商品
+//     wx.showToast({
+//       title: '请先选择要删除的商品',
+//       icon: 'none',
+//       duration: 2000
+//     })
+//   }
+// },
+
 delgoods:function(e){
-  let _this = this;
-  let selectGoods = [];
+  let _this=this;
+  let seletGoods=[];
+  let token=wx.getStorageSync('token');
   let list = _this.data.goodsList;
-  let token = wx.getStorageSync('token')
   list.forEach(item=>{
-    if(item.checked){   //选中的商品
-      selectGoods.push(item.goods_id)
+    if(item.checked){
+      seletGoods.push(item.goods_id)
     }
   })
-
-  if(selectGoods.length>0)
-  {
+  if(seletGoods.length>0){
     wx.showModal({
       title: '提示',
-      content: '是否删除选中的商品？',
+      content: '是否删除所选中的商品',
       success (res) {
         if (res.confirm) {
-          console.log('删除商品')
+          console.log('删除商品');
           wx.request({
-            url: apihost + '/xcx/cart-del?token='+token, //仅为示例，并非真实的接口地址
-            method: 'post',
-            data: {
-              goods: selectGoods.toString(),
+            url: apihost + '/xcx/cart-del?token='+ token,
+            method:'post',
+            data:{
+              goods:seletGoods.toString(),
             },
-            header: {
-              'content-type': 'application/json' // 默认值
+            header:{
+              'content-type':'application/json'
             },
-            success (res) {
-              console.log("删除成功")
+            success (res){
+              console.log("删除成功");
               _this.getCartList();
               _this.setData({
                 isSelectAll:false,
@@ -102,30 +151,30 @@ delgoods:function(e){
         }
       }
     })
-  }else{    //未选中商品
+  }else{
     wx.showToast({
-      title: '请先选择要删除的商品',
-      icon: 'none',
-      duration: 2000
-    })
+             title: '请先选择要删除的商品',
+             icon: 'none',
+             duration: 2000
+           })
   }
 },
 
 
 //购物车增加商品数量
   tao:function(e){
-let _this=this;
-let token=wx.getStorageSync('token');
+let _this=this;   //当前对象
+let token=wx.getStorageSync('token');   //取token
 let list =_this.data.goodsList;  //当前页面的商品列表
 let index=e.currentTarget.dataset.goodsindex
 let goods=list[index];  //获取添加数量的商品
-let goods_id=list[index].goods_id;
-list[index].goods_number++;
+let goods_id=list[index].goods_id;  //获取点击的商品id
+list[index].goods_number++;    //  点击的商品的数量++
 
 // 请求后端购物车接口
 wx.request({
-  url: apihost + '/xcx/cart?token='+token,
-  method:'post',
+  url: apihost + '/xcx/cart?token='+token,   //请求后端接口的地址
+  method:'post',     //post方式发送 接收
   data:{
     goodsid:goods_id
   },
@@ -138,7 +187,17 @@ wx.request({
       console.log("请求接口错误");
     }  
   }
-})
+});
+wx.showToast({
+  title: '添加成功',
+  icon: 'none',
+  duration: 2000
+});
+},
+
+// 购物车商品数量  减号
+decrcart:function(e){
+  console.log(111);
 },
 
    /**

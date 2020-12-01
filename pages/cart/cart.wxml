@@ -25,7 +25,7 @@
         <view class="price-info">
           <view class="price">${{item.cart_price}}</view>
           <view class="number">
-            <view class="decr">-</view>
+            <view class="decr" data-goodsindex="{{index}}" bindtap="decrcart">-</view>
             <input value="{{item.goods_number}}"></input>
             <view class="incr" data-goodsindex="{{index}}" bindtap="tao">+</view>
           </view>
