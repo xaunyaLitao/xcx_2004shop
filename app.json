@@ -6,7 +6,8 @@
     "pages/cart/cart",
     "pages/order/order",
     "pages/my/my",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/city/city"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,8 +42,13 @@
         "text": "我的",
         "iconPath":"/images/my.png",
         "selectedIconPath":"/images/my-select.png"
+      },
+      {
+        "pagePath": "pages/city/city",
+        "text": "天气",
+        "iconPath":"/images/my.png",
+        "selectedIconPath":"/images/my-select.png"
       }
-    
     ]
   },
   "networkTimeout": {

@@ -48,6 +48,10 @@ Page({
   })
    },
 
+   tianqi:function(e){
+    
+   },
+
 
   onLoad: function (options) {
 

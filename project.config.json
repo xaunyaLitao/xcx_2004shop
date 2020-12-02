@@ -62,6 +62,18 @@
         {
           "name": "pages/cart/cart",
           "pathName": "pages/cart/cart",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/city/city",
+          "pathName": "pages/city/city",
           "scene": null
         }
       ]

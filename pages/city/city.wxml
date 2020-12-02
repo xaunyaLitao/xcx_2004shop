@@ -1,0 +1,35 @@
+<!--pages/city/city.wxml-->
+<view class="container">
+  <!-- <view>{{inputValue}}</view> -->
+ <input placeholder="请输入城市名称"  bindinput='handInput'/>
+ <button bindtap='handl'>查询</button>
+</view>
+<view wx:for="{{res}}" wx:key="index">
+  <view>
+    日期：{{item.day}}
+  </view>
+  <view>
+    时间：{{item.date}}
+  </view>
+  <view>
+    天气：{{item.wea}}
+  </view>
+  <view>
+    空气质量：{{item.air}}
+  </view>
+  <view>
+    风力等级：{{item.win_speed}}
+  </view>
+  <view>
+    预警类型：{{item.alarm_type}}
+  </view>
+  <view>
+    预警级别：{{item.alarm_level}}
+  </view>
+  <view>
+    空气质量等级：{{item.air_level}}
+  </view>
+  <view>
+    空气质量提示: {{item.air_tips}}
+  </view>
+</view>
